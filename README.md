@@ -1,25 +1,28 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# Appointment_assesment (Receptionist and Doctor System)
 
-Things you may want to cover:
+## Overview
 
-* Ruby version
+This application provides a healthcare portal with a shared login page for both receptionists and doctors. Depending on the user role, the features and functionalities available to them will vary.
 
-* System dependencies
+### Features
 
-* Configuration
+- **Single Login Page**: Both receptionists and doctors can log in through the same page.
+- **Receptionist Features**:
+  - Register new patients.
+  - View and manage patient details (CRUD operations).
+  - View the list of appointments.
+- **Doctor Features**:
+  - View all registered patients.
+  - View a graph representing the number of registered patients vs. days.
 
-* Database creation
+### Technologies Used
 
-* Database initialization
+- Ruby on Rails (Rails 6)
+- Devise (for authentication)
+- Rails chart (for graph generation)
+- PostgreSQL (for the database)
+- Css (for styling)
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-# appointment_assesment
+---
