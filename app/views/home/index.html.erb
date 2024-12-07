@@ -1,0 +1,65 @@
+<style>
+	table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px;
+  padding: 15px;
+  font-family: Arial, sans-serif;
+}
+
+/* Table header styles */
+th {
+  background-color: #4CAF50; /* Green background for the header */
+  color: white;
+  padding: 10px 15px;
+  text-align: left;
+}
+
+/* Table cell styles */
+td {
+  padding: 10px 15px;
+  border: 1px solid #ddd; /* Light grey border around cells */
+  text-align: left;
+}
+
+/* Add zebra striping effect to rows for better readability */
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+</style>
+
+<% if current_user.doctor? %>
+  <h2 style="text-align: center; border: 1px solid #000000;">Statastics</h2>
+  <%= line_chart @list_data %>
+<% end %>
+<table style="margin: 5px; padding: 6px;">
+	<tr>
+    <td style="text-align: center;" colspan="5">Patients</td>
+    <% unless current_user.doctor? %>
+	   	<td><%= link_to 'New patient', new_appointment_path %></td>
+    <% end %>
+	</tr>
+  <tr>
+    <th>Doctor</th>
+    <th>Patient Name</th>
+    <th>Patient Number</th>
+    <th>Address</th>
+    <th>Slot</th>
+    <% if current_user.receptionists? %>
+      <th>Actions</th>
+    <% end %>
+  </tr>
+  <% @appointments.each do |app| %>
+	  <tr>
+	    <td><%= app.user.email %></td>
+	    <td><%= app.patient_name %></td>
+	    <td><%= app.patient_number %></td>
+	    <td><%= app.address %></td>
+	    <td><%= app.slot %></td>
+      <% if current_user.receptionists? %>
+        <td> <%= link_to 'Edit', edit_appointment_path(app), class: 'btn btn-edit' %> |
+        <%= link_to 'Delete', appointment_path(app), method: :delete, data: { confirm: 'Are you sure you want to delete this appointment?' }, class: 'btn btn-delete' %></td>
+	    <% end %>
+    </tr>
+	 <% end %>
+</table>
